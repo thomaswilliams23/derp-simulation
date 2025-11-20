@@ -4,3 +4,5 @@ out/sim-*/dataset-*.hdf5
 lib
 venv
 *~
+out/*/.DS_Store
+.DS_Store

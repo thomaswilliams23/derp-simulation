@@ -1,8 +1,8 @@
 {
-    "simulation_name": "sim-charmeleon-alt",
-    "output_hdf5": "dataset-charmeleon-alt.hdf5",
+    "simulation_name": "sim-wartortle",
+    "output_hdf5": "dataset-wartortle.hdf5",
     "seed": 42,
-    "remaster_xml": "src/remaster-template.xml",
+    "remaster_xml": "src/remaster-template-contemporaneous-lenient.xml",
     "num_simulations": 2000,
     "num_workers": 5,
     "simulation_hyperparameters": {
@@ -28,9 +28,10 @@
         },
         "sampling_prop": {
             "dist": "beta",
-            "alpha": 1.1,
-            "beta": 8.0
+            "alpha": 2,
+            "beta": 10
         },
-        "num_temp_measurements": 128
+        "num_temp_measurements": 10,
+        "contemporaneous_sample": true
     }
 }
