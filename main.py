@@ -646,11 +646,21 @@ def create_database(pickle_files):
 
     #put rho in database if doing contemporaneous sampling
     if "rho" in sim["parameters"].keys():
+
+        print(sim["parameters"]["rho"])
+
+        print("about to make group")
         param_grp = params_grp.create_group("rho")
+
+        print("about to pass values")
         param_grp.create_dataset("values", data=sim["parameters"]["rho"]["values"])
+
+        print("about to pass change times")
         param_grp.create_dataset(
             "change_times", data=sim["parameters"]["rho"]["change_times"]
         )
+
+        print("successfully passed data")
 
     db_conn.attrs["num_simulations"] = num_sims
     db_conn.attrs["creation_date"] = datetime.datetime.now().isoformat()
