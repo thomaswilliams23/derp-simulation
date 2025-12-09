@@ -644,9 +644,9 @@ def create_database(pickle_files):
                 data=sim["simulation_results"]["present_cumulative"],
             )
 
-    #put rho in database if doing contemporaneous sampling
-    if "rho" in sim["parameters"].keys():
-        params_grp.create_dataset("rho", data=sim["parameters"]["rho"]["values"])
+        #put rho in database if doing contemporaneous sampling
+        if "rho" in sim["parameters"].keys():
+            params_grp.create_dataset("rho", data=sim["parameters"]["rho"]["values"])
 
     db_conn.attrs["num_simulations"] = num_sims
     db_conn.attrs["creation_date"] = datetime.datetime.now().isoformat()

@@ -25,6 +25,9 @@ net_removal_ct = [db_conn[f"{key}/output/parameters/net_removal_rate/change_time
 sampling_prop_values = [db_conn[f"{key}/output/parameters/sampling_prop/values"][()] for key in db_conn.keys()]
 sampling_prop_ct = [db_conn[f"{key}/output/parameters/sampling_prop/change_times"][()] for key in db_conn.keys()]
 
+if "rho" in db_conn[f"record_000001/output/parameters/"].keys():
+    rho_values = np.array([db_conn[f"{key}/output/parameters/rho/values"][()] for key in db_conn.keys()])
+
 num_param_changes = np.array([len(r0_ct[ix]) for ix in range(len(r0_ct))])
 all_change_times = np.concatenate(r0_ct)
 
@@ -75,6 +78,12 @@ print(f"Net Removal Rate: Median={net_removal_median:.4f}, 95% interval=({net_re
 sampling_prop_median = np.median(all_sampling_prop_samples)
 sampling_prop_interval = np.percentile(all_sampling_prop_samples, [2.5, 97.5], weights=sampling_prop_weights, method='inverted_cdf')
 print(f"Sampling Proportion: Median={sampling_prop_median:.4f}, 95% interval=({sampling_prop_interval[0]:.4f}, {sampling_prop_interval[1]:.4f})")
+
+#rho if present
+if "rho" in db_conn[f"record_000001/output/parameters/"].keys():
+    rho_median = np.median(rho_values)
+    rho_interval = np.percentile(rho_values, [2.5, 97.5])
+    print(f"Rho (Contemporaneous Sampling Proportion): Median={rho_median:.4f}, 95% interval=({rho_interval[0]:.4f}, {rho_interval[1]:.4f})")
 
 
 
